@@ -1,0 +1,51 @@
+<div ng-init="vm.getImage(listing._id)" class="card" ng-repeat="listing in vm.listings">
+  <a id="go-product" ng-click="vm.go(listing._id)" class="click">
+    <div style="padding: 0px;" class="row">
+      <div style="padding: 0px;" class="col col-img">
+        <div class="item-image">
+          <img ng-if="vm.upload( listing._id )" id="content-main" ng-src="{{ vm.upload( listing._id ) }}">
+          <loading ng-if="!vm.upload( listing._id )"></loading>
+          <!--
+          <img id="content-main" class="ng-hide" ng-src="{{ vm.upload( listing._id ) }}" preloader>
+          <loading></loading>
+          -->
+        </div>
+      </div>
+      <div class="col col-70">
+        <div class="item item-text-wrap listing-label">
+          <b class="listing-header">
+            {{listing.title}}
+          </b>
+          <br >
+          <span ng-if="vm.isSeller === false" class="listing-condition">
+            <i class="icon ion-bag"></i> {{listing.condition}}
+          </span>
+          <span ng-if="vm.isSeller === true" class="listing-condition">
+            <i class="fa fa-eye"></i> {{ listing.views | number }}
+          </span>
+          <br >
+          <b class="selling">
+            {{listing.sellPrice | currency : "KSH " : 0}}
+          </b>
+          <br ng-if="vm.offer(listing._id) !== false" >
+          <span ng-if="vm.offer(listing._id) !== false" class="offer">
+            Offer: {{vm.offer(listing._id).offerAmount | currency : "KSH " : 0}}
+          </span>
+          <br >
+          <span ng-if="!vm.isSeller && vm.hasCoords(listing.hasLocation) === true" class="listing-condition">
+            <i class="icon ion-navigate"></i> {{ listing.location.coordinates | distance }}
+          </span>
+          <!--
+          <p class="listings-date">{{listing.postDate | calendar}}</p>
+          -->
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+<ion-spinner ng-show="vm.listings.length === 0 && !vm.contentLoaded" class="search-spinner" icon="spiral"></ion-spinner>
+<div ng-show="vm.listings.length === 0 && vm.contentLoaded" class="item no-posts">
+  <h3 id="content-main" >
+    {{ vm.noPosts }}
+  </h3>
+</div>

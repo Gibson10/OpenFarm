@@ -1,0 +1,113 @@
+<ion-view title="My Settings">
+    <ion-content>
+        <div class="list no-margin">
+            <div class="item" style="text-align: center;">
+                <div
+                    ngf-drop ngf-select
+                    ng-if="vm.isAndroid4 === false"
+                    id="canvas"
+                    ngf-change="vm.uploadImg($files)"
+                    ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
+                    ngf-drop-available="false" >
+                    <img
+                        ng-if="vm.preview === null && !vm.profileImg"
+                        class="edit-profileimg"
+                        ng-src="{{ vm.profile.profImage }}"
+                        id="content-main" >
+                    <img
+                        ng-if="vm.preview === null && vm.profileImg"
+                        class="edit-profileimg"
+                        ng-src="{{ vm.profileImg.link() }}"
+                        id="content-main" >
+                    <img
+                        ng-if="vm.preview != null"
+                        class="edit-profileimg"
+                        ng-src="{{vm.preview}}" >
+                    <p>Change Photo</p>
+                </div>
+                <div
+                  id="canvas"
+                  ng-click="vm.addFile()"
+                  ng-if="vm.isAndroid4 === true">
+                    <img
+                        ng-if="vm.preview === null && !vm.profileImg"
+                        class="edit-profileimg"
+                        ng-src="{{ vm.profile.profImage }}"
+                        id="content-main" >
+                    <img
+                        ng-if="vm.preview === null && vm.profileImg"
+                        class="edit-profileimg"
+                        ng-src="{{ vm.profileImg.link() }}"
+                        id="content-main" >
+                    <img
+                        ng-if="vm.preview != null"
+                        class="edit-profileimg"
+                        ng-src="{{vm.preview}}" >
+                    <p>Change Photo</p>
+                </div>
+            </div>
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="email" ng-model="vm.email" readonly>
+            </label>
+            <label class="item item-input">
+                <span ng-class="noName === true ? 'required' : ''" class="input-label">Username</span>
+                <input type="text" ng-model="vm.profile.profName">
+            </label>
+            <div ng-show="vm.hasUpload === true || vm.upload != null" style="padding-left: 16px;" class="item no-padding">
+                <button ng-click="vm.removeImg()" class="button button-clear button-assertive assertive icon-left ion-android-person">
+                    Remove Photo
+                </button>
+            </div>
+            <div ng-if="hasPassword === true;" style="padding-left: 16px;" class="item no-padding">
+                <button nav-direction="enter" ui-sref="app.account" class="button button-clear button-light button-custom icon-left ion-android-lock">
+                    Change Password
+                </button>
+            </div>
+            <div style="padding-left: 16px;" class="item no-padding">
+                <button ng-click="vm.getLocation()" class="button button-clear button-light button-custom icon-left ion-location">
+                    Get My Location
+                </button>
+            </div>
+            <label class="item item-input">
+                <span class="input-label">Area</span>
+                <input
+                      style="background-color: #fff;"
+                      class="click"
+                      type="text"
+                      ng-click="vm.getLocation()"
+                      ng-model="vm.profile.location.city"
+                      placeholder="Select Area"
+                      readonly >
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Region</span>
+                <input
+                      style="background-color: #fff;"
+                      class="click"
+                      type="text"
+                      ng-click="vm.getLocation()"
+                      ng-model="vm.profile.location.region"
+                      placeholder="Select Region"
+                      readonly >
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Country</span>
+                <input
+                      style="background-color: #fff;"
+                      class="click"
+                      type="text"
+                      ng-click="vm.getLocation()"
+                      placeholder="Country"
+                      ng-model="vm.profile.location.country"
+                      readonly >
+            </label>
+            <div class="padding">
+                <button ng-click="vm.update()" class="button button-block button-light button-custom">Update Changes</button>
+                <button ng-click="vm.logout()" class="button button-block button-clear button-light button-custom">
+                  <i class="icon ion-log-out"></i> Logout
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

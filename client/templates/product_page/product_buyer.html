@@ -1,0 +1,62 @@
+<ion-view view-title="">
+  <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <div class="list card" style="margin-left: 0px; margin-right: 0px;">
+      <div ui-sref="app.seller({ profileId: vm.seller(vm.listing.listedBy)._id })" class="item item-avatar click" style="padding: 12px 16px 12px 72px">
+        <img ng-if="vm.seller(vm.listing.listedBy).profImageID === null" ng-src="{{ vm.seller(vm.listing.listedBy).profImage }}">
+        <img ng-if="vm.seller(vm.listing.listedBy).profImageID != null" ng-src="{{ vm.sellerImg(vm.listing.listedBy).link() }}">
+        <h2 style="display: inline-block;" class="font-lg">
+          {{vm.listing.seller}}
+        </h2>
+        <p class="prod-date">
+          {{vm.listing.postDate | calendar}}
+        </p>
+        <p style="font-size: 16px;">
+          <i class="fa fa-thumbs-o-up"></i> {{ vm.seller(vm.listing.listedBy).goodRating }}
+
+          &nbsp;
+          <i class="fa fa-thumbs-o-down"></i> {{ vm.seller(vm.listing.listedBy).badRating }}
+        </p>
+        </div>
+        <product></product>
+      </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="button-bar footer-prod">
+      <div class="button-bar">
+        <button
+            ng-if="vm.hasOffer === 0"
+            ng-click="vm.newOffer()"
+            ng-disabled="vm.listing.active === false || vm.listing.listedBy === vm.userId"
+            class="button button-light button-outline"
+            style="font-size: 14px; padding: 0px;" >
+
+          <i style="display: inline-block;" class="icon ion-paper-airplane"></i>
+          <p class="prod-footer-label">Send Offer</p>
+        </button>
+        <button
+            ng-if="vm.hasOffer != 0"
+            ng-click="vm.changeOffer()"
+            ng-disabled="vm.listing.active === false || vm.listing.listedBy === vm.userId"
+            class="button button-light button-outline"
+            style="font-size: 14px; padding: 0px;" >
+
+          <i style="display: inline-block;" class="icon ion-paper-airplane"></i>
+          <p class="prod-footer-label">Change Offer</p>
+        </button>
+        <button
+            id="accept-user"
+            class="button button-light"
+            ng-click="vm.buyNow()"
+            ng-disabled="vm.listing.active === false || vm.listing.listedBy === vm.userId"
+            style="font-size: 14px; padding: 0px;" >
+
+          <i style="display: inline-block;" class="fa fa-commenting fa-lg"></i>
+          <p class="prod-footer-label">Buy Now</p>
+        </button>
+      </div>
+    </ion-footer-bar>
+</ion-view>

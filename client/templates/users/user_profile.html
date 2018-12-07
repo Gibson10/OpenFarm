@@ -1,0 +1,98 @@
+<ion-view title="User Profile">
+  <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <!-- Profile -->
+    <div class="profile-content" >
+      <img
+          ng-if="vm.profile.profImageID === null"
+          class="profile-image"
+          ng-src="{{ vm.profile.profImage }}"
+          id="content-main" >
+      <img
+          ng-if="vm.profile.profImageID != null"
+          class="profile-image"
+          ng-src="{{ vm.profileImg.link() }}"
+          id="content-main" >
+
+      <div style="text-align: left; display: inline-block">
+        <h4 class="profile-name">
+          {{ vm.profile.profName }}
+        </h4>
+        <br >
+        <span class="profile-location">
+          <i class="icon ion-location"></i> {{ vm.location(vm.profile.location) }}
+        </span>
+        <br >
+        <span class="profile-rating">
+          <i class="fa fa-thumbs-o-up"></i> {{ vm.profile.goodRating }}
+          &nbsp;
+          <i class="fa fa-thumbs-o-down"></i> {{ vm.profile.badRating }}
+        </span>
+      </div>
+    </div>
+    <div class="tabs-striped tabs-light tabs-top">
+      <div class="tabs profile-tabs">
+        <a class="tab-item active" ng-click="vm.viewFeedback()" ng-class="{'active': vm.view === true}" >
+          Feedback
+        </a>
+        <a class="tab-item" ng-click="vm.viewPosts()" ng-class="{'active': vm.view === false}" >
+          Posts
+        </a>
+      </div>
+    </div>
+    <!-- Feedback -->
+    <div ng-show="vm.view === true" class="list no-margin">
+      <div ng-repeat="post in vm.feedback" class="item item-avatar">
+        <img
+            ng-if="vm.feedbackBy(post.postBy).profImageID === null"
+            class="click"
+            ui-sref="app.seller({ profileId: vm.feedbackBy(post.postBy)._id })"
+            ng-src="{{ vm.feedbackBy(post.postBy).profImage }}" >
+        <img
+            ng-if="vm.feedbackBy(post.postBy).profImageID != null"
+            class="click"
+            ui-sref="app.seller({ profileId: vm.feedbackBy(post.postBy)._id })"
+            ng-src="{{ vm.postbyImg(post.postBy).link() }}" >
+        <h2 class="click" ui-sref="app.seller({ profileId: vm.feedbackBy(post.postBy)._id })" style="font-size: 14px;">
+          {{post.postName}}
+          &nbsp;&nbsp;
+          <i ng-if="post.goodRating === true" style="font-size: 18px;" class="fa fa-thumbs-o-up"></i>
+          <i ng-if="post.goodRating === false" style="font-size: 18px;" class="fa fa-thumbs-o-down"></i>
+        </h2>
+        <span class="feedback-date">
+          {{post.postDate | calendar}}
+        </span>
+        <p ng-bind-html="vm.review(post._id)" class="feedback-text"></p>
+      </div>
+      <div ng-if="vm.feedback.length === 0" class="item no-posts">
+        <h3>{{ vm.noFeedback }}</h3>
+      </div>
+    </div>
+    <!-- Posts -->
+    <listings ng-hide="vm.view === true"></listings>
+    <ion-infinite-scroll
+        ng-if="(vm.view === false && (vm.posts.loaded + vm.posts.skip) < vm.allposts && vm.paginate === false) || (vm.view === true && vm.feedLimit < vm.allfeedback)"
+        spinner="spiral"
+        distance="1%"
+        on-infinite="loadMore()">
+    </ion-infinite-scroll>
+    <div ng-if="vm.paginate === true;" class="button-bar button-small button-light">
+      <a
+        ng-disabled="vm.posts.skip === 0"
+        ng-click="vm.back()"
+        class="button icon-left ion-ios-arrow-back button-paginate" >
+        Back
+      </a>
+      <a
+        ng-disabled="( vm.posts.skip + vm.posts.loaded ) >= vm.allposts"
+        ng-click="vm.next()"
+        class="button icon-right ion-ios-arrow-forward button-paginate" >
+        Next
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

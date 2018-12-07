@@ -1,0 +1,37 @@
+#toast-container > .toast {
+    background-image: none !important;
+    padding: 5px;
+    text-align: center;
+}
+
+#toast-container {
+  margin-top: 76px!important;
+}
+
+#toast-container > .toast:before {
+    position: none;
+    font-family: none;
+    font-size: 0px;
+    line-height: 0px;
+    float: none;
+    color: #FFF;
+    padding-right: none;
+    margin: none;
+}
+
+#toast-container > .toast-warning:before {
+    content: "";
+}
+#toast-container > .toast-error:before {
+    content: "";
+}
+#toast-container > .toast-info:before {
+    content: "";
+}
+#toast-container > .toast-success:before {
+    content: "";
+}
+
+.toast-message {
+  font-size: 12px;
+}

@@ -1,0 +1,37 @@
+<ion-view view-title="">
+  <ion-content class="white">
+    <div style="padding-bottom: 5px;" class="padding">
+      <button id="signin" ng-click="vm.loginGoogle()" style="margin: 0px; color: #d34836; border-color: #d34836;" class="button button-block button-outline button-assertive">
+        <i class="fa fa-google-plus fa-lg"></i>&nbsp;&nbsp;Login with Google
+      </button>
+    </div>
+    <div style="padding-bottom: 20px;" class="padding">
+      <button id="signin" ng-click="vm.loginFB()" style="margin: 0px; color: #3b5998; border-color: #3b5998;" class="button button-block button-outline button-positive">
+        <i class="fa fa-facebook fa-lg"></i>&nbsp;&nbsp;Login with Facebook
+      </button>
+    </div>
+    <form ng-submit="vm.login()">
+      <div class="list no-margin">
+        <label class="item item-input item-stacked-label">
+          Username or Email
+          <input type="text" ng-model="vm.user">
+        </label>
+        <label class="item item-input item-stacked-label">
+          Password
+          <input type="password" ng-model="vm.password">
+        </label>
+      </div>
+      <div class="padding">
+        <button ng-click="vm.login()" class="button button-block button-light button-custom">
+          Login
+        </button>
+      </div>
+    </form>    
+    <button ui-sref="app.register" style="margin: 0px;" class="button button-block button-clear button-light button-custom no-padding">
+      Register
+    </button>
+    <button ui-sref="app.forgot" style="margin: 0px; text-decoration: underline;" class="button button-small button-block button-clear button-light button-custom no-padding">
+      Forgot Password
+    </button>
+  </ion-content>
+</ion-view>

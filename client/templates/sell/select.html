@@ -1,0 +1,21 @@
+<ion-view view-title="Select Product">
+  <ion-content>
+    <ul class="list no-margin">
+      <li
+        class="item item-thumbnail-left click"
+        ng-repeat="product in vm.products"
+        ui-sref="app.newpost({ productId: product._id })">
+        <img id="content-main" ng-src="{{ product.image }}">
+        {{product.name}}
+      </li>
+      <ion-spinner ng-if="vm.isLoading" class="search-spinner" icon="spiral"></ion-spinner>
+    </ul>
+    <ion-infinite-scroll
+        style="height: 0px;"
+        ng-if="vm.limit < vm.allproducts"
+        spinner="spiral"
+        distance="1%"
+        on-infinite="loadMore()">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

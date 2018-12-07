@@ -1,0 +1,64 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+# meteor libraries
+meteor-base@1.1.0
+session@1.1.7
+es5-shim@4.6.15
+tracker@1.1.3
+random@1.0.10
+http@1.2.12
+check@1.2.5
+email@1.2.3
+
+# standard libraries
+jquery@1.11.10
+driftyco:ionic
+angular
+pbastowski:angular-babel
+
+# ui
+angular-templates
+angular:angular-sanitize
+jasonaibrahim:angular-moment
+reactive-var@1.0.11
+fortawesome:fontawesome
+chrismbeckett:toastr
+jonblum:jquery-cropper
+
+# accounts
+accounts-password@1.4.0
+accounts-google@1.2.0
+accounts-facebook@1.2.1
+service-configuration@1.0.11
+mizzao:user-status
+facebook-config-ui@1.0.0
+google-config-ui@1.0.0
+
+# data
+mongo@1.1.19
+meteorhacks:search-source
+reywood:publish-composite
+ostrio:files
+
+# mobile
+netanelgilad:ng-cordova
+okland:camera-ui
+raix:push
+mobile-status-bar@1.0.14
+meteorhacks:fast-render
+
+# production
+standard-minifiers@1.1.0
+
+# testing
+meteortoys:allthings
+
+shell-server@0.2.4
+
+#analytics
+#routing
+dynamic-import@0.1.1

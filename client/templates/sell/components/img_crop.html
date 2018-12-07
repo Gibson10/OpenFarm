@@ -1,0 +1,34 @@
+<ion-modal-view style="width: 100%; height: 100%; top: 0px; bottom: 0px; right: 0px; left: 0px; background-color: #101010;">
+    <ion-header-bar class="bar-dark no-padding" style="text-align: center; background-color: #101010;">
+      <div class="row" style="margin: auto; max-width: 436px;">
+        <button class="button button-clear button-large button-icon icon ion-minus col col-33" ng-click="zoomOut()"></button>
+        <button class="button button-clear button-large button-icon icon ion-plus col col-33" ng-click="zoomIn()"></button>
+        <button class="button button-clear button-large button-icon icon ion-android-refresh col col-33" ng-click="rotate()"></button>
+      </div>
+    </ion-header-bar>
+    <ion-content class="crop-modal">
+      <div class="crop-area">
+        <img id="newUpload" ng-src="{{ newImg }}">
+      </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="button-bar footer-prod footer-upload">
+      <div class="button-bar">
+        <button
+            ng-click="cancelImg()"
+            class="button button-light button-outline"
+            style="font-size: 14px; padding: 0px;" >
+
+          <i style="display: inline-block;" class="fa fa-times fa-lg"></i>
+          <p class="prod-footer-label">Cancel</p>
+        </button>
+        <button
+            class="button button-light"
+            ng-click="uploadImg()"
+            style="font-size: 14px; padding: 0px;" >
+
+          <i style="display: inline-block;" class="fa fa-picture-o fa-lg"></i>
+          <p class="prod-footer-label">Save</p>
+        </button>
+      </div>
+    </ion-footer-bar>
+</ion-modal-view>

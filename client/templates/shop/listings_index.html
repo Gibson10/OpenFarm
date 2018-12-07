@@ -1,0 +1,45 @@
+<ion-view view-title="Open Farm">
+  <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+    <tabs ng-if="vm.isOffer === true"></tabs>
+    <div ng-if="vm.isOffer === false" style="top: -4px;" class="tabs">
+      <a class="tab-item listing-tab" ng-click="vm.setDistance()">
+        <i style="display: inline-block;" class="fa fa-location-arrow" aria-hidden="true"></i>
+        &nbsp;
+        Distance: {{ vm.options.distance | distanceTab }}
+      </a>
+      <a class="tab-item listing-tab" ng-click="vm.sortOptions($event)">
+        <i style="display: inline-block;" class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+        &nbsp;
+        Sort
+      </a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <listings></listings>
+    <ion-infinite-scroll
+        ng-if="(vm.options.loaded + vm.options.skip) < vm.allposts && vm.paginate === false"
+        spinner="spiral"
+        distance="1%"
+        on-infinite="loadMore()">
+    </ion-infinite-scroll>
+    <div ng-if="vm.paginate === true;" class="button-bar button-small button-light">
+      <a
+        ng-disabled="vm.options.skip === 0"
+        ng-click="vm.back()"
+        class="button icon-left ion-ios-arrow-back button-paginate" >
+        Back
+      </a>
+      <a
+        ng-disabled="( vm.options.skip + vm.options.loaded ) >= vm.allposts"
+        ng-click="vm.next()"
+        class="button icon-right ion-ios-arrow-forward button-paginate" >
+        Next
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

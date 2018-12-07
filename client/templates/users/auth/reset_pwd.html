@@ -1,0 +1,24 @@
+<ion-view view-title="">
+  <ion-content class="white">
+    <div class="list no-margin">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="vm.password">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Confirm Password</span>
+        <input type="password" ng-model="vm.confirm">
+      </label>
+    </div>
+    <div class="padding">
+      <button
+        ng-click="vm.changePass()"
+        class="button button-block button-light button-custom" >
+        Change Password
+      </button>
+    </div>
+    <button ui-sref="app.login" style="margin: 0px;" class="button button-block button-clear button-light button-custom no-padding">
+      <i class="icon ion-log-in"></i> Login
+    </button>
+  </ion-content>
+</ion-view>

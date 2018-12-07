@@ -1,0 +1,93 @@
+<ion-view view-title="">
+  <ion-content class="white">
+    <div style="padding-bottom: 5px;" class="padding">
+      <button id="signin" ng-click="vm.loginGoogle()" style="margin: 0px; color: #d34836; border-color: #d34836;" class="button button-block button-outline button-assertive">
+        <i class="fa fa-google-plus fa-lg"></i>&nbsp;&nbsp;Sign-Up with Google
+      </button>
+    </div>
+    <div style="padding-bottom: 20px;" class="padding">
+      <button id="signin" ng-click="vm.loginFB()" style="margin: 0px; color: #3b5998; border-color: #3b5998;" class="button button-block button-outline button-positive">
+        <i class="fa fa-facebook fa-lg"></i>&nbsp;&nbsp;Sign-Up with Facebook
+      </button>
+    </div>
+    <form ng-submit="vm.register()">
+      <div class="list no-margin">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input ng-focus="vm.clearEmail()" type="text" ng-model="vm.email">
+          <span
+            ng-if="vm.noEmail === true && vm.invalidEmail === false && vm.emailExists === false"
+            style="font-size: 12px; color: red;">
+            Required
+          </span>
+          <span ng-if="vm.invalidEmail === true && vm.emailExists === false"
+            style="font-size: 12px; color: red;">
+            Invalid email.
+          </span>
+          <span
+            ng-if="vm.emailExists === true"
+            style="font-size: 12px; color: red;">
+            Email is already registered.
+          </span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          Username
+          <input ng-focus="vm.clearUser()" type="text" ng-model="vm.username">
+          <span
+            ng-if="vm.invalidUser === true && vm.userExists === false && vm.noUser === false"
+            style="font-size: 12px; color: red;">
+            Invalid username.
+          </span>
+          <span
+            ng-if="vm.noUser === true && vm.userExists === false && vm.invalidUser === false"
+            style="font-size: 12px; color: red;">
+            Required
+          </span>
+          <span
+            ng-if="vm.userExists === true"
+            style="font-size: 12px; color: red;">
+            Username exists.
+          </span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          Password
+          <input ng-focus="vm.clearPass()" type="password" ng-model="vm.password">
+          <span
+            ng-if="vm.noPass === true && vm.pwdMismatch === false"
+            style="font-size: 12px; color: red;">
+            Required
+          </span>
+          <span
+            ng-if="vm.noPass === false && vm.invalidPass === true"
+            style="font-size: 12px; color: red;">
+            Password must have minimum of 6 characters.
+          </span>
+          <span
+            ng-if="vm.pwdMismatch === true && vm.invalidPass === false"
+            style="font-size: 12px; color: red;">
+            Passwords do not match.
+          </span>
+        </label>
+        <label class="item item-input item-stacked-label">
+          Confirm Password
+          <input ng-focus="vm.clearConfirm()" type="password" ng-model="vm.confirm">
+          <span
+            ng-if="vm.noConfirm === true && vm.pwdMismatch === false"
+            style="font-size: 12px; color: red;">
+            Required
+          </span>
+          <span
+            ng-if="vm.pwdMismatch === true"
+            style="font-size: 12px; color: red;">
+            Passwords do not match.
+          </span>
+        </label>
+      </div>    
+      <div style="margin-top: 10px;" class="padding">
+        <button ng-click="vm.register()" class="button button-block button-light button-custom">
+          Register
+        </button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

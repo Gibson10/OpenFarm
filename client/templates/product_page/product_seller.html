@@ -1,0 +1,49 @@
+<ion-view view-title="">
+  <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <div class="list card" style="margin-left: 0px; margin-right: 0px;">
+      <div class="item row">
+        <div style="text-align: left; padding-top: 0px; padding-bottom: 0px;" class="col col-50">
+          <button ng-click="vm.delete()" class="button button-clear button-assertive assertive">
+            <i class="fa fa-trash-o fa-lg"></i> Delete
+          </button>
+        </div>
+        <div style="text-align: right; padding-top: 0px; padding-bottom: 0px;" class="col col-50">
+          <button
+              nav-direction="forward"
+              ui-sref="app.editpost({ listingId: vm.listing._id })"
+              class="button button-clear button-positive icon-left ion-compose positive" >
+            Edit
+          </button>
+        </div>
+      </div>
+      <product></product>
+    </div>
+  </ion-content>
+  <ion-footer-bar align-title="left" class="button-bar footer-prod">
+    <div class="button-bar">
+      <button
+          ng-click="vm.changePrice()"
+          ng-disabled="vm.listing.active === false"
+          class="button button-light button-outline"
+          style="font-size: 14px; padding: 0px;" >
+
+        <i style="display: inline-block;" class="fa fa-tag fa-lg"></i>
+        <p class="prod-footer-label">Change Price</p>
+      </button>
+      <button
+          class="button button-light"
+          ng-disabled="vm.offerCount === 0 || vm.listing.active === false"
+          ng-click="vm.viewOffers()"
+          style="font-size: 14px; padding: 0px;" >
+
+        <i style="display: inline-block;" class="fa fa-list fa-lg"></i>
+        <p class="prod-footer-label">View Offers ({{vm.offerCount}})</p>
+      </button>
+    </div>
+  </ion-footer-bar>
+</ion-view>

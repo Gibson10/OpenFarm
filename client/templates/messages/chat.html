@@ -1,0 +1,37 @@
+<ion-view view-title="Open Farm">
+  <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+    <chats></chats>
+  </ion-header-bar>
+  <ion-content style="bottom: 60px;">
+    <div style="margin-top: 20px;">
+      <div ng-repeat="message in vm.messages" class="message-wrapper item">
+        <div ng-if="message.sentBy === vm.thisUser" class="chat-bubble right" ng-init="vm.showMsg($last)">
+          <div ng-bind-html="vm.chatmsg(message._id)">
+          </div>
+        </div>
+        <div ng-if="message.sentBy === vm.otherUser.profID" class="chat-bubble left" ng-init="vm.showMsg($last)">
+          <b style="line-height: 150%;">{{vm.otherUser.profName}}:</b>
+          <div ng-bind-html="vm.chatmsg(message._id)">
+          </div>
+        </div>
+        <div ng-if="message.sentBy === 'system'" class="chat-bubble sys" ng-init="vm.showMsg($last)">
+          <div ng-bind-html="vm.chatmsg(message._id)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar style="height: auto;" align-title="left" class="bar bar-footer bar-light item-input-inset">
+    <textarea
+        id="chatInput"
+        rows="1"
+        msd-elastic
+        style="resize: none; overflow:hidden; width: 95%; border-bottom: 1px solid; "
+        class="item-input"
+        type="text"
+        ng-model="vm.body"
+        placeholder="Message" >
+      </textarea>
+    <button ng-click="vm.sendMsg()" class="button-stable button-icon icon ion-paper-airplane"></button>
+  </ion-footer-bar>
+</ion-view>

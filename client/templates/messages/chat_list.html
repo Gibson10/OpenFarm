@@ -1,0 +1,35 @@
+<ion-view view-title="Open Farm">
+  <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+    <tabs></tabs>
+  </ion-header-bar>
+  <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <div ng-if="vm.chats.length != 0" ng-repeat="chat in vm.chats" class="list chat-list">
+      <a class="item item-avatar" ui-sref="app.chat({chatId: chat._id })" id="content-main">
+        <img ng-if="vm.otherUser(chat._id).profImageID === null" ng-src="{{ vm.otherUser(chat._id).profImage }}">
+        <img ng-if="vm.otherUser(chat._id).profImageID != null" ng-src="{{ vm.userImg(chat._id).link() }}">
+        <h2>{{ vm.otherUser(chat._id).profName }}</h2>
+        <p style="font-size: 10px; width: 50%;">{{chat.prodName}}</p>
+        <span ng-show="vm.unread(chat._id) != 0" class="badge badge-assertive">{{vm.unread(chat._id)}}</span>
+        <span class="chatlist-date">{{chat.latestMsg | calendar}}</span>
+      </a>
+    </div>
+    <ion-spinner ng-show="vm.chats.length === 0 && !vm.contentLoaded" class="search-spinner" icon="spiral"></ion-spinner>
+    <div ng-show="vm.chats.length === 0 && vm.contentLoaded" class="item no-posts">
+      <h3 id="content-main">
+        {{ vm.noPosts }}
+      </h3>
+    </div>
+  </ion-content>
+  <ion-infinite-scroll
+      style="height: 0px;"
+      ng-if="vm.limit < vm.allchats"
+      spinner="spiral"
+      distance="1%"
+      on-infinite="loadMore()">
+  </ion-infinite-scroll>
+</ion-view>

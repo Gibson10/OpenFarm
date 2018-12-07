@@ -1,0 +1,35 @@
+<ion-view view-title="Activities">
+    <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <ul class="no-margin list">
+        <li
+            nav-direction="forward"
+            ng-repeat="feed in vm.feeds"
+            ng-class="vm.isRead(feed._id) ? 'gray' : 'white'"
+            style="padding: 22px 16px 16px 16px;"
+            ng-click="vm.go(feed._id)"
+            class="item"
+            id="content-main" >
+            <p class="feeds-date"> {{feed.postDate | calendar}} </p>
+            <p style="font-size: 12px; white-space: normal;" ng-bind-html="vm.feedmsg(feed._id)" >
+            </p>
+        </li>
+        <li ng-if="vm.feeds.length === 0" class="item no-posts">
+          <h3 id="content-main" >
+            {{ vm.noPosts }}
+          </h3>
+        </li>
+    </ul>
+    <ion-infinite-scroll
+        style="height: 0px;"
+        ng-if="vm.loaded < vm.allfeeds"
+        icon="ion-loading-c"
+        distance="10%"
+        on-infinite="loadMore()">
+    </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

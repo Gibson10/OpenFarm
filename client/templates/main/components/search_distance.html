@@ -1,0 +1,9 @@
+<ion-popover-view style="height: 58px; max-width: 210px;">
+  <ion-content scroll="false">
+    <ul class="list no-margin">
+      <div class="item click sort-selection" ng-click="vm.filter()">
+        <i class="icon ion-navigate"></i>&nbsp; Distance: {{ vm.options.distance | distanceTab }}
+      </div>
+    </ul>
+  </ion-content>
+</ion-popover-view>

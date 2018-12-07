@@ -1,0 +1,57 @@
+<div class="item" style="padding: 0px;">
+  <ion-slide-box on-slide-changed="vm.slideChanged($index)">
+    <ion-slide ng-if="vm.listing.images.length !== 0" ng-repeat="image in vm.listing.images">
+      <div class="box item-image">
+        <img id="content-main" class="ng-hide" ng-src="{{ vm.uploads(image) }}" preloader>
+        <loading></loading>
+      </div>
+    </ion-slide>
+    <loading ng-if="vm.listing.images.length === 0"></loading>
+  </ion-slide-box>
+</div>
+<div class="item">
+  <div class="row">
+    <h4 class="font-lg">{{vm.listing.title}}</h4>
+  </div>
+  <div class="row prod-row">
+    <h5 class="col col-30 font-lg" style="color: #14A774; font-weight: bold;">{{vm.listing.sellPrice | currency : "KSH" : 0}}</h5>
+  </div>
+  <div ng-if="vm.isSeller === true" class="row prod-row">
+    <h5 class="font-md">
+      <i class="fa fa-eye"></i>
+      &nbsp;
+      {{ vm.listing.views }}
+    </h5>
+  </div>
+  <div class="row prod-row">
+    <h5 class="font-md">
+      <i class="icon ion-bag"></i>
+      &nbsp;
+      {{ vm.listing.condition }}<br />
+    </h5>
+  </div>
+  <div class="row prod-row">
+    <h5 class="font-md">
+      <i class="fa fa-map-marker"></i>
+      &nbsp;
+      {{ vm.listing.meetLocation }}
+    </h5>
+  </div>
+  <div style="padding-top: 10px;" class="row">
+    <p ng-bind-html="vm.notes(vm.listing.listingNotes)" class="font-sm prod-notes"></p>
+  </div>
+</div>
+<div ng-show="vm.postOffer" class="item" style="padding: 0px 0px 0px 16px;">
+  <div class="row prod-row">
+    <p class="font-sm" style="color: #14A774; display: inline-block;">
+      <ng-pluralize
+          count="vm.offerCount"
+          when="{ '0': '',
+                  '1': '1 Offer',
+                  'other': '{} Offers'}" >
+      </ng-pluralize>
+      &nbsp;&nbsp;&nbsp;
+      Best Offer: {{ vm.postOffer.offerAmount | currency : "$" : 0}}
+    </p>
+  </div>
+</div>

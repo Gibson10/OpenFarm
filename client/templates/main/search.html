@@ -1,0 +1,79 @@
+<ion-view view-title="Search">
+  <ion-header-bar style="height: auto; border: 0px; border-style: none;" class="bar-subheader bar-stable no-padding search-subheader">
+    <div style="margin-bottom: 10px;" class="list list-inset">
+      <form ng-submit="vm.onEnter()">
+        <div id="searchbox" class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input id="search-input" type="search" placeholder="Search" ng-model="vm.search">
+          <i
+            class="icon ion-android-more-vertical placeholder-icon click search-button"
+            ng-click="vm.showOptions($event)" >
+          </i>
+        </div>
+      </form>
+    </div>
+  </ion-header-bar>
+  <ion-content style="margin-top: 22px;">
+    <div
+        class="card"
+        ng-repeat="listing in vm.listings"
+        ng-init="vm.getImage({ id: listing._id, isLast: $last, isFirst: $first })" >
+      <a id="go-product" ng-click="vm.go(listing._id)" class="click">
+        <div style="padding: 0px;" class="row">
+          <div style="padding: 0px;" class="col col-img">
+            <div class="item-image">
+              <img ng-if="vm.upload( listing._id )" id="content-main" ng-src="{{ vm.upload( listing._id ) }}">
+              <loading ng-if="!vm.upload( listing._id )"></loading>
+              <!--
+              <img id="content-main" class="ng-hide" ng-src="{{ vm.upload( listing._id ) }}" preloader>
+              <loading></loading>
+              -->
+            </div>
+          </div>
+          <div class="col col-70">
+            <div class="item item-text-wrap listing-label">
+              <b class="listing-header">
+                {{listing.title}}
+              </b>
+              <br >
+              <span class="listing-condition">
+                <i class="icon ion-bag"></i> {{listing.condition}}
+              </span>
+              <br >
+              <b class="selling">
+                {{listing.sellPrice | currency : "KSH" : 0}}
+              </b>
+              <br >
+              <span ng-if="vm.hasCoords(listing.hasLocation) === true" class="listing-condition">
+                <i class="icon ion-navigate"></i> {{ listing.location.coordinates | distance }}
+              </span>
+              <!--
+              <p class="listings-date">{{listing.postDate | calendar}}</p>
+              -->
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div ng-if="vm.listings.length === 0" class="item no-posts">
+      <h3 id="content-main" >
+        {{ vm.noPosts }}
+      </h3>
+    </div>
+    <ion-spinner ng-if="vm.isLoading" class="search-spinner" icon="spiral"></ion-spinner>
+    <div ng-if="vm.searchData && vm.searchData.count > 10" class="button-bar button-small button-light">
+      <a
+        ng-disabled="vm.options.skip < 10"
+        ng-click="vm.back()"
+        class="button icon-left ion-ios-arrow-back button-paginate" >
+        Back
+      </a>
+      <a
+        ng-disabled="vm.options.skip >= 20 || vm.searchData.count <= (vm.options.skip + 10)"
+        ng-click="vm.next()"
+        class="button icon-right ion-ios-arrow-forward button-paginate" >
+        Next
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

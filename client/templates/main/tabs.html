@@ -1,0 +1,15 @@
+<div style="top: -4px;" class="tabs">
+  <a ng-class="activeTab === 'Shop' ? 'active' :''"  class="tab-item" ng-click="menu.selectShop()">
+    Shop
+  </a>
+  <a ng-class="activeTab === 'Sell' ? 'active' :''" class="tab-item" ng-click="menu.selectSell()">
+    Sell
+  </a>
+  <a ng-if="menu.currentUser" ng-class="activeTab === 'Offers' ? 'active' :''" class="tab-item" ng-click="menu.selectMyOffer()">
+    Offers
+  </a>
+  <a ng-if="menu.currentUser" ng-class="activeTab === 'Chat' ? 'active' :''" class="tab-item" ng-click="menu.selectChat()">
+    <i class="icon ion-ios-email-outline"></i>
+    <span ng-show="menu.unreadMsg != 0" class="badge badge-assertive badge-msg">{{ menu.unreadMsg }}</span>
+  </a>
+</div>

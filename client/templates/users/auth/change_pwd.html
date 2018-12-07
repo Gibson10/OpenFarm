@@ -1,0 +1,25 @@
+<ion-view view-title="">
+  <ion-content class="white">
+    <div class="list no-margin">
+      <label class="item item-input item-stacked-label">
+        Current Password
+        <input type="password" ng-model="vm.oldPassword">
+      </label>
+      <label class="item item-input item-stacked-label">
+        New Password
+        <input type="password" ng-model="vm.password">
+      </label>
+      <label class="item item-input item-stacked-label">
+        Confirm Password
+        <input type="password" ng-model="vm.confirm">
+      </label>
+    </div>
+    <div class="padding">
+      <button
+        ng-click="vm.changePass()"
+        class="button button-block button-light button-custom">
+        Change Password
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

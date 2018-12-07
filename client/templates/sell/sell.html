@@ -1,0 +1,36 @@
+<ion-view view-title="Open Farm">
+  <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+  <tabs></tabs>
+  </ion-header-bar>
+  <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <button nav-direction="forward" style="background-color: #1491a7;" class="button button-positive button-modal sell-button" ui-sref="app.select">
+      <i class="icon ion-android-add"></i>  Sell New Item
+    </button>
+    <listings></listings>
+    <ion-infinite-scroll
+      ng-if="(vm.options.loaded + vm.options.skip) < vm.allposts && vm.paginate === false"
+      icon="spiral"
+      distance="1%"
+      on-infinite="loadMore()" >
+    </ion-infinite-scroll>
+    <div ng-if="vm.paginate === true;" class="button-bar button-small button-light">
+      <a
+        ng-disabled="vm.options.skip === 0"
+        ng-click="vm.back()"
+        class="button icon-left ion-ios-arrow-back button-paginate" >
+        Back
+      </a>
+      <a
+        ng-disabled="( vm.options.skip + vm.options.loaded ) >= vm.allposts"
+        ng-click="vm.next()"
+        class="button icon-right ion-ios-arrow-forward button-paginate" >
+        Next
+      </a>
+    </div>
+    </ion-content>
+</ion-view>

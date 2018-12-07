@@ -1,0 +1,69 @@
+<ion-view view-title="Open Farm">
+  <ion-header-bar class="tabs-striped tabs-top tabs-light bar-subheader no-padding">
+    <tabs></tabs>
+  </ion-header-bar>
+  <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()"
+        disable-pulling-rotation="true" >
+    </ion-refresher>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input
+          ng-click="vm.search()"
+          ng-keypress="vm.search()"
+          class="search-text"
+          type="text"
+          placeholder="Search"
+          style="background-color: #fff;"
+          readonly />
+      </label>
+    </div>
+    <div ng-repeat="product in vm.products" class="row" ng-if="$index % 2 === 0">
+      <div class="card col col-45" id="content-main">
+        <a id="listings" ui-sref="app.listings({ productId: vm.products[$index]._id })">
+          <div class="item item-image">
+            <img ng-src="{{ vm.products[$index].image }}">
+          </div>
+          <p class="item item-text-wrap shop-label">
+            {{ vm.products[$index].name }}
+            <br />
+            <span>
+              <i class="fa fa-shopping-cart"></i> {{ vm.products[$index].listingsCount | number }}
+            </span>
+          </p>
+        </a>
+      </div>
+      <div class="card col col-45" ng-show="vm.products[$index + 1]" id="content-main">
+        <a id="listings" ui-sref="app.listings({ productId: vm.products[$index + 1]._id })">
+          <div class="item item-image">
+            <img ng-src="{{ vm.products[$index + 1].image }}">
+          </div>
+          <p class="item item-text-wrap shop-label">
+              {{ vm.products[$index + 1].name }}
+              <br />
+              <span>
+                <i class="fa fa-shopping-cart"></i> {{ vm.products[$index + 1].listingsCount | number }}
+              </span>
+          </p>
+        </a>
+      </div>
+      <div class="col col-offset-45" style="margin: 5px 5px;" ng-hide="vm.products[$index + 1]">
+      </div>
+    </div>
+    <div ng-show="vm.products.length === 0 && vm.contentLoaded" class="item no-posts">
+      <h3 id="content-main" >
+        {{ vm.noPosts }}
+      </h3>
+    </div>
+    <ion-spinner ng-show="vm.products.length === 0 && !vm.contentLoaded" class="search-spinner" icon="spiral"></ion-spinner>
+    <ion-infinite-scroll
+        ng-if="vm.limit < vm.allproducts && vm.limit < 50"
+        spinner="spiral"
+        distance="1%"
+        on-infinite="loadMore()" >
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

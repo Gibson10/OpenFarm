@@ -1,0 +1,43 @@
+{
+  "public": {
+    "facebook": {
+      "appId": "1584100445044112"
+    },
+    "admob": {
+      "adId": ""
+    },
+    "fcm": {
+      "senderId": "909497562921"
+    },
+    "google":{
+      "clientId": "AIzaSyBFkvtVr4OMNi-abQ_Jf8QvQgbXFeEBryc"
+    }    
+  },
+  "facebook": {
+    "secret": "b694ffec40059e37fcae43f5dc2e5601"
+  },
+  "google": {
+      "secret": ""
+  },
+  "sendgrid": {
+    "apiKey": ""
+  },
+  "mailgun": {
+    "username": "",
+    "password": ""
+  },
+  "here": {
+    "appId": "Ga8ClnxXbHswKPs4jXra",
+    "appCode": "9qyOGJyWzV2p-LRnz377GA"
+  },
+  "fcm": {
+    "serverKey": "AIzaSyAAj9lCx_1tZRjjkIbQl5NBsHchVsnDXw8"
+  },
+  "s3": {
+    "key": "",
+    "secret": "",
+    "bucket": "",
+    "region": "",
+    "domain": ""
+  }
+}

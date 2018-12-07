@@ -1,0 +1,15 @@
+<ion-popover-view style="height: 157px; max-width: 210px;">
+  <ion-content scroll="false">
+    <ul class="list no-margin">
+      <ion-radio class="item click sort-selection" ng-click="vm.getSort('distance')" ng-model="vm.sort" ng-value="'distance'">
+        <i class="icon ion-location"></i>&nbsp; Distance
+      </ion-radio>
+      <ion-radio class="item click sort-selection" ng-click="vm.getSort('date')" ng-model="vm.sort" ng-value="'date'">
+        <i class="icon ion-android-calendar"></i>&nbsp; Latest Post
+      </ion-radio>
+      <ion-radio class="item click sort-selection" ng-click="vm.getSort('price')" ng-model="vm.sort" ng-value="'price'">
+        <i class="icon ion-pricetag"></i>&nbsp; Selling Price
+      </ion-radio>
+    </ul>
+  </ion-content>
+</ion-popover-view>
